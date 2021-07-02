@@ -1,7 +1,7 @@
 import Navbar from './Navbar';
 import Home from './Home';
 import Create from './Create';
-import BlogDetails from './BlogDetails';
+import RecipeDetails from './RecipeDetails';
 import NotFound from './NotFound';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -19,8 +19,8 @@ function App() {
             <Route exact path="/create">
               <Create></Create>
             </Route>
-            <Route exact path="/blogs/:id">
-              <BlogDetails></BlogDetails>
+            <Route exact path="/recipes/:id">
+              <RecipeDetails></RecipeDetails>
             </Route>
             <Route exact path="*">
               <NotFound></NotFound>

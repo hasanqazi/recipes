@@ -1,25 +1,28 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
+import TextareaAutosize from 'react-textarea-autosize';
 
 const Create = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const [image, setImage] = useState('');
+  const [time, setTime] = useState('');
   const [author, setAuthor] = useState('hasan');
   const [isPending, setIsPending] = useState(false);
   const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const blog = {title, body, author};
+    const recipe = {title, body, author, image, time};
 
     setIsPending(true);
 
-    fetch('http://localhost:8000/blogs', {
+    fetch('https://quick-recipes.herokuapp.com/recipes', {
       method: 'POST',
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(blog)
+      body: JSON.stringify(recipe)
     }).then(()=>{
-      console.log("new blog added");
+      console.log("new recipe added");
       setIsPending(false);
       history.push('/');
     })
@@ -27,32 +30,51 @@ const Create = () => {
 
   return (
     <div className="create">
-      <h2>Add a New Blog</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Blog title</label>
-        <input
-          type="text"
-          required
-          value={title}
-          onChange={(e)=>setTitle(e.target.value)}
-        />
-        <label>Blog body:</label>
-        <textarea
-          required
-          value={body}
-          onChange={(e)=>setBody(e.target.value)}
-        ></textarea>
-        <label>Blog author:</label>
-        <select
-          value={author}
-          onChange={(e)=>setAuthor(e.target.value)}
-        >
-          <option value="hasan">hasan</option>
-          <option value="ayse">ayse</option>
-        </select>
-        {!isPending && <button>Add Blog</button>}
-        {isPending && <button disabled>Adding Blog....</button>}
-      </form>
+      <h2 className="flex justify-center text-3xl p-10">Add a New Recipe</h2>
+      <div className="sm:max-w-2xl lg:max-w-4xl mx-auto flex-none justify-center">
+        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+          <label className="text-label">Recipe title</label>
+          <input
+            className="text-input"
+            type="text"
+            required
+            value={title}
+            onChange={(e)=>setTitle(e.target.value)}
+          />
+          <label className="text-label">Recipe instructions:</label>
+          <TextareaAutosize
+             className="text-input"
+             required
+             value={body}
+             onChange={(e)=>setBody(e.target.value)}
+          />
+          <label className="text-label">Recipe image (link):</label>
+          <input
+            className="text-input"
+            value={image}
+            onChange={(e)=>setImage(e.target.value)}
+          ></input>
+          <label className="text-label">Time:</label>
+          <input
+            className="text-input"
+            value={time}
+            onChange={(e)=>setTime(e.target.value)}
+          ></input>
+          <label className="text-label">Recipe author:</label>
+          <input
+            className="text-input"
+            value={author}
+            onChange={(e)=>setAuthor(e.target.value)}
+          >
+          </input>
+          {!isPending && 
+            <div className="flex justify-center">
+              <button className="btn mt-8">Add Recipe</button>
+            </div> 
+          }
+          {isPending && <button disabled>Adding Recipe....</button>}
+        </form>
+      </div>
     </div>
   );
 }
