@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 const RecipeList = ({recipes, title}) => {
 
   return (
-    <div className="recipe-list px-16 py-6">
-      <h2 className="text-gray-700 text-6xl font-semibold mt-12 mb-12 border-b border-gray-200">{title}</h2>
+    <div className="recipe-list md:px-4 md:py-6 sm:px-4 px-3 h-full">
+      <h2 className="text-gray-700 lg:text-6xl text-5xl font-semibold pt-6 pb-6 border-b border-gray-200 flex justify-center">{title}</h2>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-10 sm:gap-5">
         {recipes.map((recipe) => (
           <div key={recipe.id}>
@@ -12,8 +12,8 @@ const RecipeList = ({recipes, title}) => {
               <div className="recipe-preview mt-8 card">
                 <img className="w-full h-64 sm:h-64 object-cover" src={recipe.image}></img>
                 <div className="m-4">
-                  <h2 className="font-bold">{recipe.title}</h2>
-                  <p className="block text-gray-500 text-sm">Written by {recipe.author}</p>
+                  <h2 className="font-bold text-white">{recipe.title}</h2>
+                  <p className="block text-gray-100 text-sm">Written by {recipe.author}</p>
                 </div>
                 <div className="badge">
                   <svg className="w-5" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -26,6 +26,7 @@ const RecipeList = ({recipes, title}) => {
           </div>
         ))}
       </div>
+      <div className="mb-5"></div>
     </div>
   );
 }

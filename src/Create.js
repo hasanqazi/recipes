@@ -29,10 +29,10 @@ const Create = () => {
   }
 
   return (
-    <div className="create">
-      <h2 className="flex justify-center text-3xl p-10">Add a New Recipe</h2>
+    <div className="create h-screen">
+      <h2 className="text-gray-700 lg:text-6xl text-5xl font-semibold pt-12 pb-12 border-b border-gray-200 flex justify-center">Add a New Recipe</h2>
       <div className="sm:max-w-2xl lg:max-w-4xl mx-auto flex-none justify-center">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 bg-red-500" onSubmit={handleSubmit}>
           <label className="text-label">Recipe title</label>
           <input
             className="text-input"
