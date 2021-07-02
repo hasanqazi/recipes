@@ -7,7 +7,7 @@ const Create = () => {
   const [body, setBody] = useState('');
   const [image, setImage] = useState('');
   const [time, setTime] = useState('');
-  const [author, setAuthor] = useState('hasan');
+  const [author, setAuthor] = useState('');
   const [isPending, setIsPending] = useState(false);
   const history = useHistory();
 
